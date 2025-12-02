@@ -206,6 +206,7 @@ class Theme {
 
     theme;
     ctrl;
+    onChangeCallbacks = [];
 
     get current() {
         if (this.theme == "system") {
@@ -245,6 +246,10 @@ class Theme {
         return isDark ? "dark" : "light";
     }
 
+    onChange(callback) {
+        this.onChangeCallbacks.push(callback);
+    }
+
     change(theme) {
         localStorage.setItem("theme", theme);
         this.apply(theme);
@@ -266,6 +271,84 @@ class Theme {
 
         this.ctrl.classList.remove("icon-theme-dark", "icon-theme-light", "icon-theme-system");
         this.ctrl.classList.add("icon-theme-" + this.theme);
+
+        this.onChangeCallbacks.forEach(callback => {
+            try { 
+                callback(this.current); 
+            } catch (_) {}
+        });
     }
 }
-new Theme();
+const theme = new Theme();
+
+// Mermaid manager
+class MermaidManager {
+
+    constructor(theme) {
+        this.theme = theme;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            this.renderAll({ firstRun: true });
+            this.theme.onChange(() => {
+                this.renderAll({ firstRun: false });
+            });
+        });
+    }
+
+    initMermaid() {
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: this.theme.isDark ? "dark" : "default",
+            securityLevel: "loose"
+        });
+    }
+
+    initialTransform() {
+        const blocks = document.querySelectorAll(
+            "pre code.language-mermaid, pre.language-mermaid code"
+        );
+
+        blocks.forEach(block => {
+            const pre = block.closest("pre");
+            if (!pre) return;
+
+            const code = block.textContent;
+            const div = document.createElement("div");
+            div.className = "mermaid";
+            div.textContent = code;
+            div.setAttribute("data-original-code", code);
+            pre.replaceWith(div);
+        });
+    }
+
+    resetDiagrams() {
+        document.querySelectorAll(".mermaid").forEach(diagram => {
+            const original = diagram.getAttribute("data-original-code");
+            if (!original) return;
+            diagram.removeAttribute("data-processed");
+            diagram.textContent = original;
+        });
+    }
+
+    runMermaid() {
+        if (typeof mermaid.run === "function") {
+            mermaid.run();
+        } else if (typeof mermaid.init === "function") {
+            mermaid.init(undefined, ".mermaid");
+        }
+    }
+
+    renderAll({ firstRun } = { firstRun: false }) {
+        if (firstRun) {
+            this.initialTransform();
+        } else {
+            this.resetDiagrams();
+        }
+
+        this.initMermaid();
+        this.runMermaid();
+    }
+}
+
+if (typeof mermaid !== "undefined")
+    new MermaidManager(theme);

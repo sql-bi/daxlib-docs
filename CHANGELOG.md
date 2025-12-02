@@ -1,5 +1,9 @@
 # Docs0 Changelog
 
+## 1.1.9 (2025-12-02)
+
+- Add Mermaid diagrams support
+
 ## 1.1.8 (2025-10-24)
 
 - Improve search indexing robustness
