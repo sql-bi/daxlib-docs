@@ -4,7 +4,7 @@ title:          Contribute to DAX Lib
 menu_title:     Contribute
 published:      true
 date:           2025-08-14
-modified:       2025-10-28
+modified:       2026-01-01
 order:          /02
 next_reading:   true
 ---
@@ -68,12 +68,6 @@ sequenceDiagram
     ├── .../
     └── z/
 ```
-
-We s#till need a fork of `daxlib/daxlib` (`<youraccount>/daxlib`), and will still submit a pull request to `daxlib/daxlib` to publish a library.
-
-The difference is that development of the library will occur on a fork of `daxlib/lib-quickstart-template` (`<youraccount>/<yourlibrary>`). A github workflow can be run on `<youraccount>/<yourlibrary>`, which will push the library to a new, version specific, branch of `<youraccount>/daxlib`, which can then be submitted via a pull request to `daxlib/daxlib`.
-
-For in-depth steps follow the [Contribute Medium-Large Libraries to DAX Lib](github-repo.md) guide.
 
 ### Medium/Large Library
 
