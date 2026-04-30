@@ -119,7 +119,7 @@ Since you have a specific repo dedicated to your library you are able to:
 
 - Connect with your users with GitHub issues
 - Collaborate with others to develop the library
-- Add [documentation site](docs-site.md) and host (for example) on GitHub Pages
+- Add [documentation site](doc-sites.md) and host (for example) on GitHub Pages
 
 ### DAX Lib official libraries
 
