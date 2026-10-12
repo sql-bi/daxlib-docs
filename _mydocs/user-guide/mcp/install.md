@@ -121,6 +121,16 @@ Add the `daxlib-mcp` entry with the `servers` key to the MCP configuration of Vi
 
 Use the `mcpServers` configuration above, or the equivalent format of your client. The command is `npx` and the arguments are `-y`, `@daxlib/mcp`, and `--start`.
 
+## Use the standalone executable
+
+You can use the server without Node.js. Each [release](https://github.com/daxlib/daxlib-mcp/releases) of the server has the executable in a zip file for Windows x64 (for example, `daxlib-mcp-0.1.0-win-x64.zip`).
+
+1. Download the zip file from the [releases page](https://github.com/daxlib/daxlib-mcp/releases).
+2. Extract the zip file to a folder.
+3. In the configuration of your MCP client, set `command` to the full path of `daxlib-mcp.exe`, and set `args` to `["--start"]`.
+
+If you run `daxlib-mcp.exe` without arguments, it shows a configuration example with the path of the executable.
+
 ## Command-line options
 
 ```text
@@ -137,4 +147,4 @@ If you run the command without options, it shows an overview and a configuration
 
 ## Update the server
 
-To use a specific version of the server, add the version to the package name in the configuration, for example `@daxlib/mcp@0.1.0-beta.4`. Then restart your MCP client.
+To use a specific version of the server, add the version to the package name in the configuration, for example `@daxlib/mcp@0.1.0`. Then restart your MCP client.

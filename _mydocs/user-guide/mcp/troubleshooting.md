@@ -28,6 +28,8 @@ In Cursor, open the **Output** panel and select **MCP Logs**.
 
 Do the failed action again, then read the most recent messages.
 
+To collect a detailed diagnostic trace, refer to [Troubleshooting DAX Lib MCP](https://github.com/daxlib/daxlib-mcp/blob/main/docs/troubleshooting.md) in the daxlib-mcp repository.
+
 ## The server does not start
 
 | Problem | Solution |
@@ -73,4 +75,4 @@ The server changes the model in Power BI Desktop, but it does not save the file.
 
 ## Report a problem
 
-To report a problem with the MCP server, [open an issue on GitHub](https://github.com/daxlib/daxlib/issues/new). Include the server version (`npx -y @daxlib/mcp --version`), your MCP client, and the messages from the server output.
+To report a problem with the MCP server, [open an issue on GitHub](https://github.com/daxlib/daxlib-mcp/issues/new). Include the server version (`npx -y @daxlib/mcp --version`), your MCP client, and the messages from the server output.

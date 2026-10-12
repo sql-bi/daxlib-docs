@@ -11,11 +11,9 @@ next_reading:   true
 
 The DAX Lib MCP server connects an AI assistant to DAX Lib. MCP (Model Context Protocol) is an open standard that lets an assistant use external tools. Examples of MCP clients are Claude Desktop, GitHub Copilot in VS Code, and Cursor.
 
-> The DAX Lib MCP server is a prerelease (beta) version. Its behavior can change in future versions.
-
 ## Supported clients
 
-We tested the server with these MCP clients: Claude (Claude Desktop and Claude Code), GitHub Copilot in VS Code, and Codex. This list can change. We expect the server to work with all MCP clients that support local (stdio) servers. If you find a problem with a client, [open an issue on GitHub](https://github.com/daxlib/daxlib/issues).
+We tested the server with these MCP clients: Claude (Claude Desktop and Claude Code), GitHub Copilot in VS Code, and Codex. This list can change. We expect the server to work with all MCP clients that support local (stdio) servers. If you find a problem with a client, [open an issue on GitHub](https://github.com/daxlib/daxlib-mcp/issues).
 
 ## What the server does
 
@@ -26,7 +24,7 @@ With the DAX Lib MCP server, you can ask your assistant to:
 - List the Power BI Desktop models that are open on your computer.
 - Install the functions of a package into a model open in Power BI Desktop.
 
-The server is distributed as the npm package [@daxlib/mcp](https://www.npmjs.com/package/@daxlib/mcp). It runs locally on your computer. It does not need a configuration file, environment variables, or API keys.
+The server is distributed as the npm package [@daxlib/mcp](https://www.npmjs.com/package/@daxlib/mcp). It runs locally on your computer. It does not need a configuration file, environment variables, or API keys. The source code is in the [daxlib-mcp repository](https://github.com/daxlib/daxlib-mcp) on GitHub.
 
 ## How the installation works
 
@@ -49,7 +47,7 @@ The server does not change other model objects. The package code does not go thr
 
 ## Limits
 
-- The server runs only on Windows x64. There are no plans for a macOS version at this time. If you want a macOS version, [tell us in a GitHub issue](https://github.com/daxlib/daxlib/issues/new).
+- The server runs only on Windows x64. There are no plans for a macOS version at this time. If you want a macOS version, [tell us in a GitHub issue](https://github.com/daxlib/daxlib-mcp/issues/new).
 - You can install packages only into models open in Power BI Desktop on the same computer.
 - The server does not remove or update installed functions. To update a package, install the new version. The server replaces functions with the same name.
 
