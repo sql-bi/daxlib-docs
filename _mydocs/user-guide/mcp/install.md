@@ -4,7 +4,7 @@ title:          Install the DAX Lib MCP Server
 menu_title:     Install
 published:      true
 date:           2026-10-11
-modified:       2026-10-11
+modified:       2026-11-01
 order:          /user-guide/mcp/01
 next_reading:   true
 ---
@@ -15,7 +15,7 @@ next_reading:   true
 |---|---|
 | Operating system | Windows x64. Other platforms (Linux, macOS, Windows ARM64) are not available. |
 | Node.js | Version 18 or higher. Node.js only starts the server. |
-| Power BI Desktop | Necessary to install packages. The target model must have compatibility level 1702 or higher. |
+| Power BI Desktop | Necessary to install packages. The target model must have compatibility level 1702 or higher. Not necessary to get a `DEFINE` block for a DAX query. |
 | MCP client | An AI assistant that supports local (stdio) MCP servers. |
 
 The server is a self-contained program. You do not need to install .NET.
@@ -123,7 +123,7 @@ Use the `mcpServers` configuration above, or the equivalent format of your clien
 
 ## Use the standalone executable
 
-You can use the server without Node.js. Each [release](https://github.com/daxlib/daxlib-mcp/releases) of the server has the executable in a zip file for Windows x64 (for example, `daxlib-mcp-0.1.0-win-x64.zip`).
+You can use the server without Node.js. Each [release](https://github.com/daxlib/daxlib-mcp/releases) of the server has the executable in a zip file for Windows x64 (for example, `daxlib-mcp-0.2.0-win-x64.zip`).
 
 1. Download the zip file from the [releases page](https://github.com/daxlib/daxlib-mcp/releases).
 2. Extract the zip file to a folder.
@@ -147,4 +147,4 @@ If you run the command without options, it shows an overview and a configuration
 
 ## Update the server
 
-To use a specific version of the server, add the version to the package name in the configuration, for example `@daxlib/mcp@0.1.0`. Then restart your MCP client.
+To use a specific version of the server, add the version to the package name in the configuration, for example `@daxlib/mcp@0.2.0`. Then restart your MCP client.
