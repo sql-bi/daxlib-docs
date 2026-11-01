@@ -4,7 +4,7 @@ title:          Troubleshoot the DAX Lib MCP Server
 menu_title:     Troubleshooting
 published:      true
 date:           2026-10-11
-modified:       2026-10-11
+modified:       2026-11-01
 order:          /user-guide/mcp/04
 next_reading:   true
 ---
@@ -60,6 +60,22 @@ To test the server outside the client, run `npx -y @daxlib/mcp --version` in a t
 | The instance hosts a number of databases different from one. | The model is not loaded. Open the target model in Power BI Desktop, then try again. |
 | The package could not be read. | The package content is not valid. Do not try again. Report the problem to the package author. |
 | The engine could not save the change. | Power BI Desktop rejected the change. Read the error message. Do not try again automatically. |
+| The package depends on a package that is not installed in the model. | This is a warning. The installation is complete, but the functions that call the other package fail. Install the other package at the version shown in the message. |
+
+## Query definition errors
+
+These messages come from `get_function_definitions`.
+
+| Message | Cause and solution |
+|---|---|
+| A function is not in the package. | The function name is not correct. The message shows up to 10 close names. Use the exact name, or do not specify functions to get all the functions of the package. |
+| `functions` must contain at least one function name. | The list of functions is empty. Specify one or more functions, or do not specify the list. |
+| The package contains no functions. | The package version has no functions, so there is no `DEFINE` block. |
+| The package could not be read. | The package content is not valid. Do not try again. Report the problem to the package author. |
+| The functions call each other in a cycle. | DAX does not allow recursion in user-defined functions. The server does not make a block. |
+| A function is in more than one package. | A `DEFINE` block cannot contain the same name two times. The server does not make a block. |
+| The block is not complete. | A called function is not in the block. Read the warnings, for example a dependency package or version that is not available. |
+| The DAX query fails on a part of a function name. | Some functions published before a change of the DAX parser cannot run in a query, because a part of their name is now reserved. The server returns these functions unchanged. The query error shows the part of the name. |
 
 ## Raise the compatibility level
 

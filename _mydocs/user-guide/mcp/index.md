@@ -4,7 +4,7 @@ title:          Use DAX Lib with AI Assistants (MCP)
 menu_title:     AI Assistants (MCP)
 published:      true
 date:           2026-10-11
-modified:       2026-10-11
+modified:       2026-11-01
 order:          /user-guide/03
 next_reading:   true
 ---
@@ -21,6 +21,7 @@ With the DAX Lib MCP server, you can ask your assistant to:
 
 - Search the DAX Lib catalog for packages.
 - Show the details, versions, and README of a package.
+- Get the functions of a package as a DAX query `DEFINE` block, to use them in a query without a change to the model.
 - List the Power BI Desktop models that are open on your computer.
 - Install the functions of a package into a model open in Power BI Desktop.
 
@@ -39,6 +40,16 @@ The server does not change other model objects. The package code does not go thr
 
 > The server does not save your Power BI Desktop file. After the installation, save the file in Power BI Desktop to keep the changes.
 
+## How query definitions work
+
+When you ask for the functions of a package for a DAX query, the server does these steps:
+
+1. It downloads the package from DAX Lib.
+2. It finds the requested functions and the functions that they call. By default, it also adds the functions that they call in the dependency packages, at the versions that the package declares.
+3. It returns the functions as a `DEFINE` block. Put the block before `EVALUATE` in your query.
+
+The server does not connect to a model and does not change a model.
+
 ## You stay in control
 
 - You select the package and the version. The server instructs the assistant to let you choose and not to select a package automatically.
@@ -48,7 +59,7 @@ The server does not change other model objects. The package code does not go thr
 ## Limits
 
 - The server runs only on Windows x64. There are no plans for a macOS version at this time. If you want a macOS version, [tell us in a GitHub issue](https://github.com/daxlib/daxlib-mcp/issues/new).
-- You can install packages only into models open in Power BI Desktop on the same computer.
+- You can install packages only into models open in Power BI Desktop on the same computer. A `DEFINE` block works in a DAX query on the Power BI service, Azure Analysis Services, and recent versions of Power BI Desktop. Refer to [`get_function_definitions`](tools.md#get_function_definitions).
 - The server does not remove or update installed functions. To update a package, install the new version. The server replaces functions with the same name.
 
 ## Pages in this section
